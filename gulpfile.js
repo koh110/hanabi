@@ -121,8 +121,9 @@ gulp.task('lint', function() {
 // bowerで取得したファイルをindex.htmlに挿入
 gulp.task('inject', function() {
   return gulp.src(config.html.injectTarget)
-    .pipe($.inject(gulp.src(mainBowerFiles()), {
-      name: 'inject'
+    .pipe($.inject(gulp.src(mainBowerFiles(), {read: false}), {
+      name: 'bower',
+      relative: true
     }))
     .pipe(gulp.dest('./app'));
 });
